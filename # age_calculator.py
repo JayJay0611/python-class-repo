@@ -1,0 +1,22 @@
+# age_calculator.py
+
+first_name = input("Enter your first name: ")
+last_name = input("Enter your last name: ")
+current_year = int(input("Enter the current year: "))
+birth_year = int(input("Enter your birth year: "))
+
+# age calculator
+age = current_year - birth_year
+
+# Printing greeting and age
+print("\nHello, " + first_name + " " + last_name + "!")
+
+print("You are " + str(age) + " years old this year.\n")
+
+# adding another year to age
+age += 1
+
+# Printing age in the next year
+print(f"In the next year {current_year + 1}, you will be {age} years old.")
+
+print("\nCompleted by, Jonathan Jewell")
