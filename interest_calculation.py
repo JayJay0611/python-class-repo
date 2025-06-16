@@ -1,0 +1,41 @@
+# interest_calculation.py
+
+while True:
+    investment = int(input("Enter investment amount (greater than 0 and less than 50000): "))
+    if 0 < investment < 50000:
+        break
+    print("Invalid amount. Try again.")
+
+while True:
+    rate = int(input("Enter interest rate (greater than 0 and less than 15): "))
+    if 0 < rate < 15:
+        break
+    print("Invalid rate. Try again.")
+
+while True:
+    years = int(input("Enter investment duration in years (greater than 0): "))
+    if years > 0:
+        break
+    print("Invalid duration. Try again.")
+
+months = years * 12
+
+monthly_rate = (rate / 12) / 100
+
+total = 0
+
+for month in range(1, months + 1):
+    total += investment
+    interest = total * monthly_rate  
+
+    total += interest
+
+    if month % 12 == 0:
+        print("Year", month // 12, ": $", round(total, 2))
+
+print("\nInvestment Duration:", years, "years")
+print("Yearly interest rate:", str(rate) + "%")
+print("Monthly investment: $" + str(investment))
+print("Total Amount of Investment After Compounding: $" + str(round(total, 2)))
+
+print("\nCompleted by, Jonathan Jewell") 
