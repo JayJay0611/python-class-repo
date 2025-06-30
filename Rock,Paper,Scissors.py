@@ -1,47 +1,49 @@
-import random
-import time
+from random import randrange
 
-def play_game():
-
-
-    while True:
-
-        ch = input("Enter your choice (rock, paper, scissor) : ").strip().lower()
-
-        choices = ['rock', 'paper', 'scissor']
-        a = random.choice(choices)
-
-        time.sleep(0.5)
-
-        print("Computer's choice is: ", a)
-
-        time.sleep(0.8)
-
-        if a == ch:
-            print("Tie")
+def get_user_weapon():
+    print("1. Rock")
+    print("2. Paper")
+    print("3. Scissors")
+    try:
+        choice = int(input("Enter Your Weapon: "))
+        if choice in [1, 2, 3]:
+            return choice
         else:
-            if a == 'rock' and ch == 'paper':
-                print("You win")
+            print("Invalid number. Please choose 1, 2, or 3.")
+            return get_user_weapon()
+    except ValueError:
+        print("That wasn't a number. Try again!")
+        return get_user_weapon()
 
-            elif a == 'rock' and ch == 'scissor':
-                print("Computer wins")
+def get_opponent_weapon():
+    weapon = randrange(1, 4)
+    return weapon  
 
-            if a == 'paper' and ch == 'scissor':
-                print("You win")
-            elif a == 'paper' and ch == 'rock':
-                print("Computer wins")
+def determine_winner(user, opponent):
+    weapons = {1: "Rock", 2: "Paper", 3: "Scissors"}
 
-            if a == 'scissor' and ch == 'rock':
-                print("You win")
-            elif a == 'scissor' and ch == 'paper':
-                print("Computer wins")
+    print(f"\nYou chose: {weapons[user]}")
+    print(f"Opponent chose: {weapons[opponent]}")
 
-        time.sleep(0.7)
+    if user == opponent:
+        print("It's a tie!")
+    elif (user == 1 and opponent == 3) or \
+         (user == 2 and opponent == 1) or \
+         (user == 3 and opponent == 2):
+        print("You win!")
+    else:
+        print("You lose!")
 
-        ask = input("Do you want to continue playing? (y/n) ")
-        if ask == 'n':
-            print("Ending game")
-            break
+def main():
+    print("SELECT YOUR WEAPON (1-3)")
+    play_again = 'y'
+    while play_again.lower() == 'y':
+        user_weapon = get_user_weapon()
+        opponent_weapon = get_opponent_weapon()
+        determine_winner(user_weapon, opponent_weapon)
+        play_again = input("\nWould you like to play again? (y/n): ")
 
+    print("\nCompleted by, Jonathan Jewell")
 
-play_game()
+if __name__ == "__main__":
+    main()
