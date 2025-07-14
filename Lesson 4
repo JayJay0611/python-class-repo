@@ -1,49 +1,37 @@
-from random import randrange
+from random import randrange 
 
-def get_user_weapon():
-    print("1. Rock")
-    print("2. Paper")
-    print("3. Scissors")
-    try:
-        choice = int(input("Enter Your Weapon: "))
-        if choice in [1, 2, 3]:
-            return choice
-        else:
-            print("Invalid number. Please choose 1, 2, or 3.")
-            return get_user_weapon()
-    except ValueError:
-        print("That wasn't a number. Try again!")
-        return get_user_weapon()
+def main(): continue_playing = 'y' 
 
-def get_opponent_weapon():
-    weapon = randrange(1, 4)
-    return weapon  
+while continue_playing.lower() == 'y': 
+    print("SELECT YOUR WEAPON (1-3)") 
+    user_weapon = get_user_weapon() 
+    opponent_weapon = get_opponent_weapon() 
+    determine_winner(user_weapon, opponent_weapon) 
+    continue_playing = input("Want to play again (y/n): ") 
+ 
+print("Completed by, Jonathan Jewell")   
+  
 
-def determine_winner(user, opponent):
-    weapons = {1: "Rock", 2: "Paper", 3: "Scissors"}
+def get_user_weapon(): print("1. Rock") print("2. Paper") print("3. Scissors") choice = int(input("Enter your Weapon: ")) return choice 
 
-    print(f"\nYou chose: {weapons[user]}")
-    print(f"Opponent chose: {weapons[opponent]}")
+def get_opponent_weapon(): return randrange(1, 4) 
 
-    if user == opponent:
-        print("It's a tie!")
-    elif (user == 1 and opponent == 3) or \
-         (user == 2 and opponent == 1) or \
-         (user == 3 and opponent == 2):
-        print("You win!")
-    else:
-        print("You lose!")
+def determine_winner(user, opponent): weapons = {1: "rock", 2: "paper", 3: "scissors"} 
 
-def main():
-    print("SELECT YOUR WEAPON (1-3)")
-    play_again = 'y'
-    while play_again.lower() == 'y':
-        user_weapon = get_user_weapon()
-        opponent_weapon = get_opponent_weapon()
-        determine_winner(user_weapon, opponent_weapon)
-        play_again = input("\nWould you like to play again? (y/n): ")
+if user == opponent: 
+    print("It's a tie!") 
+elif (user == 1 and opponent == 3): 
+    print("You win, rock crushes scissors!") 
+elif (user == 2 and opponent == 1): 
+    print("You win, paper covers rock!") 
+elif (user == 3 and opponent == 2): 
+    print("You win, scissors cut paper!") 
+elif (user == 1 and opponent == 2): 
+    print("You lose, paper covers rock!") 
+elif (user == 2 and opponent == 3): 
+    print("You lose, scissors cut paper!") 
+elif (user == 3 and opponent == 1): 
+    print("You lose, rock crushes scissors!") 
+ 
 
-    print("\nCompleted by, Jonathan Jewell")
-
-if __name__ == "__main__":
-    main()
+if name == "main": main() 
